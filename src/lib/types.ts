@@ -7,6 +7,10 @@ export type PipelineStage =
   | "WON"
   | "LOST";
 
+export type IntentTier = "HOT" | "WARM" | "COLD";
+
+export type AiConversationState = "ACTIVE" | "HANDOVER_PENDING" | "PAUSED_REP" | "OPTED_OUT";
+
 export interface PipedrivePerson {
   id: number;
   name: string;
@@ -18,7 +22,7 @@ export interface PipedrivePerson {
   smsOptOutDate?: string;
   firstTouchSource: string;
   lastTouchSource: string;
-  intentTier: "HOT" | "WARM" | "COLD";
+  intentTier: IntentTier;
   assignedRep: string;
 }
 
@@ -33,7 +37,7 @@ export interface PipedriveDeal {
   phone: string;
   assignedRep: string;
   lastActivityDate: string;
-  aiConversationState: "ACTIVE" | "HANDOVER_PENDING" | "PAUSED_REP" | "OPTED_OUT";
+  aiConversationState: AiConversationState;
   unreadSmsCount: number;
 }
 
