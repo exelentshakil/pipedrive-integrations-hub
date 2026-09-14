@@ -122,7 +122,7 @@ export function AttributionEngineCockpit({
                   <UserCheck className="h-4 w-4 text-blue-600" />
                   <span>Pipedrive Person Custom Fields Database</span>
                 </h3>
-                <p className="text-[11px] text-[var(--color-text-muted)]">
+                <p className="text-xs text-[var(--color-text-muted)]">
                   Synced in real time via Pipedrive v1 API /persons/&#123;id&#125;
                 </p>
               </div>
@@ -150,7 +150,7 @@ export function AttributionEngineCockpit({
             {/* Enterprise Fixed Data Table (Single-line controls & table-fixed mandate) */}
             <div className="overflow-x-auto border border-[var(--color-border)] rounded-lg">
               <table className="table-fixed w-full min-w-[620px] text-xs divide-y divide-[var(--color-border)]">
-                <thead className="bg-[var(--color-panel-subtle)] text-[var(--color-text-secondary)] font-semibold uppercase tracking-wider text-[10px]">
+                <thead className="bg-[var(--color-panel-subtle)] text-[var(--color-text-secondary)] font-semibold uppercase tracking-wider text-xs">
                   <tr>
                     <th className="w-[32%] px-3.5 py-2.5 text-left">Person & Organization</th>
                     <th className="w-[20%] px-3 py-2.5 text-left">Lead Score</th>
@@ -178,7 +178,7 @@ export function AttributionEngineCockpit({
                           <div className="font-bold text-[var(--color-text-primary)] truncate">
                             {p.name}
                           </div>
-                          <div className="text-[11px] text-[var(--color-text-muted)] truncate font-mono">
+                          <div className="text-xs text-[var(--color-text-muted)] truncate font-mono">
                             {p.orgName}
                           </div>
                         </td>
@@ -205,7 +205,7 @@ export function AttributionEngineCockpit({
                         </td>
 
                         <td className="px-3 py-3">
-                          <span className={cn("px-2 py-0.5 rounded text-[10px] font-mono font-bold border whitespace-nowrap shrink-0 inline-block", tierConfig.badgeClass)}>
+                          <span className={cn("px-2 py-0.5 rounded text-xs font-mono font-bold border whitespace-nowrap shrink-0 inline-block", tierConfig.badgeClass)}>
                             {p.intentTier}
                           </span>
                         </td>
@@ -241,7 +241,7 @@ export function AttributionEngineCockpit({
                   <Sparkles className="h-3.5 w-3.5 text-blue-600" />
                   <span>Simulate Live Web Action for {selectedPerson.name}:</span>
                 </span>
-                <span className="text-[10px] font-mono text-[var(--color-text-muted)]">
+                <span className="text-xs font-mono text-[var(--color-text-muted)]">
                   Session Match: Auto-resolves by cookie
                 </span>
               </div>
@@ -252,11 +252,11 @@ export function AttributionEngineCockpit({
                   onClick={() => handleSimulateAction("FLOOR_PLAN_VIEW", 15, "/plans/horizon-42-custom")}
                   className="p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] hover:border-blue-400 text-left transition-all group shadow-2xs shrink-0"
                 >
-                  <div className="flex items-center gap-1 text-[11px] font-semibold text-[var(--color-text-primary)]">
+                  <div className="flex items-center gap-1 text-xs font-semibold text-[var(--color-text-primary)]">
                     <Eye className="h-3 w-3 text-blue-500 shrink-0" />
                     <span className="truncate">Floor Plan View</span>
                   </div>
-                  <div className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold mt-1">
+                  <div className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold mt-1">
                     +15 Lead Score
                   </div>
                 </button>
@@ -266,11 +266,11 @@ export function AttributionEngineCockpit({
                   onClick={() => handleSimulateAction("PRICING_CALC", 25, "/calculators/turnkey-builder-estimates")}
                   className="p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] hover:border-amber-400 text-left transition-all group shadow-2xs shrink-0"
                 >
-                  <div className="flex items-center gap-1 text-[11px] font-semibold text-[var(--color-text-primary)]">
+                  <div className="flex items-center gap-1 text-xs font-semibold text-[var(--color-text-primary)]">
                     <Calculator className="h-3 w-3 text-amber-500 shrink-0" />
                     <span className="truncate">Pricing Calculator</span>
                   </div>
-                  <div className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold mt-1">
+                  <div className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold mt-1">
                     +25 Lead Score
                   </div>
                 </button>
@@ -280,11 +280,11 @@ export function AttributionEngineCockpit({
                   onClick={() => handleSimulateAction("BROCHURE_DOWNLOAD", 30, "/assets/perth-spec-guide-2026.pdf")}
                   className="p-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] hover:border-red-400 text-left transition-all group shadow-2xs shrink-0"
                 >
-                  <div className="flex items-center gap-1 text-[11px] font-semibold text-[var(--color-text-primary)]">
+                  <div className="flex items-center gap-1 text-xs font-semibold text-[var(--color-text-primary)]">
                     <FileText className="h-3 w-3 text-red-500 shrink-0" />
                     <span className="truncate">Brochure Download</span>
                   </div>
-                  <div className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold mt-1">
+                  <div className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold mt-1">
                     +30 Lead Score
                   </div>
                 </button>
@@ -305,7 +305,7 @@ export function AttributionEngineCockpit({
                 <h3 className="text-xs sm:text-sm font-bold text-[var(--color-text-primary)]">
                   Attribution Profile: {selectedPerson.name}
                 </h3>
-                <span className="text-[11px] text-[var(--color-text-muted)] font-mono">
+                <span className="text-xs text-[var(--color-text-muted)] font-mono">
                   Pipedrive Person #{selectedPerson.id}
                 </span>
               </div>
@@ -368,7 +368,7 @@ export function AttributionEngineCockpit({
                     key={t.id}
                     className="p-2.5 rounded-lg bg-[var(--color-panel-subtle)] border border-[var(--color-border)] space-y-1 text-xs"
                   >
-                    <div className="flex items-center justify-between text-[11px]">
+                    <div className="flex items-center justify-between text-xs">
                       <span className="font-mono text-[var(--color-text-muted)]">
                         {t.timestamp} • {t.sessionId}
                       </span>
@@ -377,9 +377,9 @@ export function AttributionEngineCockpit({
                       </span>
                     </div>
                     <div className="font-semibold text-[var(--color-text-primary)]">
-                      {t.action.replace(/_/g, " ")}: <span className="font-mono text-[11px] text-[var(--color-text-secondary)]">{t.pagePath}</span>
+                      {t.action.replace(/_/g, " ")}: <span className="font-mono text-xs text-[var(--color-text-secondary)]">{t.pagePath}</span>
                     </div>
-                    <div className="text-[10px] font-mono text-[var(--color-text-muted)]">
+                    <div className="text-xs font-mono text-[var(--color-text-muted)]">
                       Campaign: {t.utmCampaign} ({t.utmSource}/{t.utmMedium})
                     </div>
                   </div>

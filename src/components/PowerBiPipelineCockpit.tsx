@@ -74,7 +74,7 @@ export function PowerBiPipelineCockpit() {
             <Network className="h-4 w-4 text-amber-600" />
             <span>Power BI Relational Model (1-to-Many Relationships)</span>
           </h3>
-          <span className="text-[11px] font-mono text-[var(--color-text-muted)]">
+          <span className="text-xs font-mono text-[var(--color-text-muted)]">
             Last Delta Refresh: {lastRefreshedTime}
           </span>
         </div>
@@ -98,14 +98,14 @@ export function PowerBiPipelineCockpit() {
               >
                 <div className="flex items-center justify-between">
                   <span className={cn(
-                    "px-2 py-0.5 rounded text-[10px] font-mono font-bold border whitespace-nowrap shrink-0",
+                    "px-2 py-0.5 rounded text-xs font-mono font-bold border whitespace-nowrap shrink-0",
                     isFact 
                       ? "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800"
                       : "bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800"
                   )}>
                     {schema.tableType} TABLE
                   </span>
-                  <span className="text-[11px] font-mono text-[var(--color-text-muted)]">
+                  <span className="text-xs font-mono text-[var(--color-text-muted)]">
                     {schema.recordCount.toLocaleString()} rows
                   </span>
                 </div>
@@ -114,7 +114,7 @@ export function PowerBiPipelineCockpit() {
                   {schema.tableName}
                 </div>
 
-                <p className="text-[11px] text-[var(--color-text-muted)]">
+                <p className="text-xs text-[var(--color-text-muted)]">
                   {schema.columns.length} columns defined
                 </p>
               </button>
@@ -180,7 +180,7 @@ export function PowerBiPipelineCockpit() {
         {/* Enterprise Data Table (table-fixed w-full mandate) */}
         <div className="overflow-x-auto border border-[var(--color-border)] rounded-lg">
           <table className="table-fixed w-full min-w-[680px] text-xs divide-y divide-[var(--color-border)]">
-            <thead className="bg-[var(--color-panel-subtle)] text-[var(--color-text-secondary)] font-semibold uppercase tracking-wider text-[10px]">
+            <thead className="bg-[var(--color-panel-subtle)] text-[var(--color-text-secondary)] font-semibold uppercase tracking-wider text-xs">
               <tr>
                 <th className="w-[30%] px-4 py-2.5 text-left">Column Name</th>
                 <th className="w-[30%] px-4 py-2.5 text-left">Power BI Data Type</th>

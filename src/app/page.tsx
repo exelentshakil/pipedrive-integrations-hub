@@ -7,7 +7,7 @@ import { SmsAgentCockpit } from "@/components/SmsAgentCockpit";
 import { AttributionEngineCockpit } from "@/components/AttributionEngineCockpit";
 import { PowerBiPipelineCockpit } from "@/components/PowerBiPipelineCockpit";
 import { WebhookInspector } from "@/components/WebhookInspector";
-import { TechnicalSpecsFooter } from "@/components/TechnicalSpecsFooter";
+import { Footer } from "@/components/Footer";
 import { 
   INITIAL_DEALS, 
   INITIAL_PERSONS, 
@@ -305,7 +305,7 @@ export default function HomePage() {
       </main>
 
       {/* Engineering Architecture Specs Footer (strictly no proposals or screening questions in UI) */}
-      <TechnicalSpecsFooter />
+      <Footer />
     </div>
   );
 }

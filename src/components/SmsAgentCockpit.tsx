@@ -143,14 +143,14 @@ export function SmsAgentCockpit({
                       <span className="text-xs font-bold text-[var(--color-text-primary)] truncate">
                         {deal.personName}
                       </span>
-                      <span className={cn("px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold border whitespace-nowrap shrink-0", stage.badgeClass)}>
+                      <span className={cn("px-1.5 py-0.5 rounded text-xs font-mono font-semibold border whitespace-nowrap shrink-0", stage.badgeClass)}>
                         {stage.label}
                       </span>
                     </div>
-                    <div className="text-[11px] text-[var(--color-text-muted)] truncate">
+                    <div className="text-xs text-[var(--color-text-muted)] truncate">
                       {deal.title}
                     </div>
-                    <div className="flex items-center justify-between text-[11px] font-mono mt-1 pt-1 border-t border-[var(--color-border)]/60">
+                    <div className="flex items-center justify-between text-xs font-mono mt-1 pt-1 border-t border-[var(--color-border)]/60">
                       <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                         {formatCurrency(deal.value)}
                       </span>
@@ -179,12 +179,12 @@ export function SmsAgentCockpit({
                       {selectedPerson.name} ({selectedPerson.phone})
                     </h3>
                     {isOptedOut && (
-                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 whitespace-nowrap shrink-0">
+                      <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 whitespace-nowrap shrink-0">
                         OPTED OUT
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] text-[var(--color-text-muted)] font-mono truncate">
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono truncate">
                     Carrier: Telstra AU • Sender ID: Sinch Gateway (+61 488 840 219)
                   </p>
                 </div>
@@ -221,21 +221,21 @@ export function SmsAgentCockpit({
                     <div className="flex items-center gap-1.5 mb-1 px-1">
                       {isOutbound ? (
                         <>
-                          <span className="text-[11px] font-mono text-[var(--color-text-muted)]">
+                          <span className="text-xs font-mono text-[var(--color-text-muted)]">
                             {msg.timestamp}
                           </span>
-                          <span className="text-[11px] font-semibold text-purple-700 dark:text-purple-400 flex items-center gap-1">
+                          <span className="text-xs font-semibold text-purple-700 dark:text-purple-400 flex items-center gap-1">
                             <Bot className="h-3 w-3" />
                             <span>{msg.aiGenerated ? "AI Agent" : "System Dispatch"}</span>
                           </span>
                         </>
                       ) : (
                         <>
-                          <span className="text-[11px] font-semibold text-[var(--color-text-primary)] flex items-center gap-1">
+                          <span className="text-xs font-semibold text-[var(--color-text-primary)] flex items-center gap-1">
                             <User className="h-3 w-3" />
                             <span>{selectedPerson.name}</span>
                           </span>
-                          <span className="text-[11px] font-mono text-[var(--color-text-muted)]">
+                          <span className="text-xs font-mono text-[var(--color-text-muted)]">
                             {msg.timestamp}
                           </span>
                         </>
@@ -254,7 +254,7 @@ export function SmsAgentCockpit({
                     </div>
 
                     {/* Message Sub-Badges */}
-                    <div className="flex items-center gap-2 mt-1 px-1 text-[10px] font-mono">
+                    <div className="flex items-center gap-2 mt-1 px-1 text-xs font-mono">
                       {msg.deliveryStatus === "DELIVERED" && (
                         <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                           <CheckCircle2 className="h-3 w-3" />
@@ -291,9 +291,9 @@ export function SmsAgentCockpit({
               
               {/* Quick Scenario Triggers */}
               <div>
-                <div className="text-[11px] font-semibold text-[var(--color-text-secondary)] mb-1.5 flex items-center justify-between">
+                <div className="text-xs font-semibold text-[var(--color-text-secondary)] mb-1.5 flex items-center justify-between">
                   <span>Simulate Customer Inbound SMS (Click to test):</span>
-                  <span className="text-[10px] font-mono text-[var(--color-text-muted)]">Zero Zapier Latency</span>
+                  <span className="text-xs font-mono text-[var(--color-text-muted)]">Zero Zapier Latency</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   <button
@@ -370,7 +370,7 @@ export function SmsAgentCockpit({
                   <h3 className="text-xs sm:text-sm font-bold text-[var(--color-text-primary)]">
                     Pipedrive Deal #{selectedDeal.id}
                   </h3>
-                  <span className="text-[11px] text-[var(--color-text-muted)] font-mono">
+                  <span className="text-xs text-[var(--color-text-muted)] font-mono">
                     Updated live via REST API v1
                   </span>
                 </div>
@@ -412,7 +412,7 @@ export function SmsAgentCockpit({
 
               <div className="flex items-center justify-between py-1 border-b border-[var(--color-border-subtle)]">
                 <span className="text-[var(--color-text-muted)]">AI State Machine:</span>
-                <span className={cn("px-2 py-0.5 rounded text-[11px] font-mono font-semibold border whitespace-nowrap shrink-0", getAiStateBadge(selectedDeal.aiConversationState).badgeClass)}>
+                <span className={cn("px-2 py-0.5 rounded text-xs font-mono font-semibold border whitespace-nowrap shrink-0", getAiStateBadge(selectedDeal.aiConversationState).badgeClass)}>
                   {getAiStateBadge(selectedDeal.aiConversationState).label}
                 </span>
               </div>
@@ -420,7 +420,7 @@ export function SmsAgentCockpit({
               <div className="flex items-center justify-between py-1 border-b border-[var(--color-border-subtle)]">
                 <span className="text-[var(--color-text-muted)]">TNZ / Spam Act Status:</span>
                 <span className={cn(
-                  "px-2 py-0.5 rounded text-[11px] font-mono font-semibold border whitespace-nowrap shrink-0",
+                  "px-2 py-0.5 rounded text-xs font-mono font-semibold border whitespace-nowrap shrink-0",
                   selectedPerson.smsConsent
                     ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60"
                     : "bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800/60"
@@ -445,17 +445,17 @@ export function SmsAgentCockpit({
                   <span>Salesperson Handover Logic</span>
                 </span>
                 {isHandover ? (
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500 text-white whitespace-nowrap shrink-0">
+                  <span className="px-2 py-0.5 rounded text-xs font-bold bg-amber-500 text-white whitespace-nowrap shrink-0">
                     CALL SCHEDULED
                   </span>
                 ) : (
-                  <span className="text-[11px] font-mono text-[var(--color-text-muted)]">
+                  <span className="text-xs font-mono text-[var(--color-text-muted)]">
                     Autonomous
                   </span>
                 )}
               </div>
 
-              <p className="text-[11px] text-[var(--color-text-secondary)] leading-relaxed">
+              <p className="text-xs text-[var(--color-text-secondary)] leading-relaxed">
                 When customer expresses explicit intent to talk, schedule a meeting, or requests pricing review, the AI halts autonomous replies and creates an immediate high-priority call task in Pipedrive.
               </p>
 
@@ -478,7 +478,7 @@ export function SmsAgentCockpit({
               </div>
               
               <div className="space-y-1.5 max-h-[140px] overflow-y-auto">
-                <div className="p-2 rounded-md bg-[var(--color-panel-subtle)] border border-[var(--color-border)] flex items-center justify-between text-[11px]">
+                <div className="p-2 rounded-md bg-[var(--color-panel-subtle)] border border-[var(--color-border)] flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="h-2 w-2 rounded-full bg-purple-500 shrink-0" />
                     <span className="font-semibold text-[var(--color-text-primary)] truncate">
@@ -489,7 +489,7 @@ export function SmsAgentCockpit({
                 </div>
 
                 {isHandover && (
-                  <div className="p-2 rounded-md bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800/60 flex items-center justify-between text-[11px]">
+                  <div className="p-2 rounded-md bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800/60 flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2 min-w-0">
                       <PhoneCall className="h-3.5 w-3.5 text-amber-600 shrink-0" />
                       <span className="font-bold text-amber-900 dark:text-amber-200 truncate">
@@ -501,7 +501,7 @@ export function SmsAgentCockpit({
                 )}
 
                 {isOptedOut && (
-                  <div className="p-2 rounded-md bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex items-center justify-between text-[11px]">
+                  <div className="p-2 rounded-md bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2 min-w-0">
                       <ShieldAlert className="h-3.5 w-3.5 text-zinc-600 shrink-0" />
                       <span className="font-bold text-zinc-800 dark:text-zinc-200 truncate">

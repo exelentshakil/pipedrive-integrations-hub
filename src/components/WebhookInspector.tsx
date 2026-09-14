@@ -112,14 +112,14 @@ export function WebhookInspector({
               <span className="text-xs font-bold text-[var(--color-text-primary)]">
                 Recent Inbound/Outbound Events ({logs.length})
               </span>
-              <span className="text-[11px] font-mono text-[var(--color-text-muted)]">
+              <span className="text-xs font-mono text-[var(--color-text-muted)]">
                 Auto-refreshed
               </span>
             </div>
 
             <div className="overflow-x-auto">
               <table className="table-fixed w-full min-w-[580px] text-xs divide-y divide-[var(--color-border)]">
-                <thead className="bg-[var(--color-panel-subtle)] text-[var(--color-text-secondary)] font-semibold uppercase tracking-wider text-[10px]">
+                <thead className="bg-[var(--color-panel-subtle)] text-[var(--color-text-secondary)] font-semibold uppercase tracking-wider text-xs">
                   <tr>
                     <th className="w-[18%] px-3 py-2 text-left">Time</th>
                     <th className="w-[22%] px-3 py-2 text-left">Source</th>
@@ -141,12 +141,12 @@ export function WebhookInspector({
                             : "hover:bg-[var(--color-panel-subtle)]/60"
                         )}
                       >
-                        <td className="px-3 py-2.5 font-mono text-[11px] text-[var(--color-text-muted)]">
+                        <td className="px-3 py-2.5 font-mono text-xs text-[var(--color-text-muted)]">
                           {log.timestamp}
                         </td>
                         <td className="px-3 py-2.5">
                           <span className={cn(
-                            "px-2 py-0.5 rounded text-[10px] font-mono font-bold border whitespace-nowrap shrink-0",
+                            "px-2 py-0.5 rounded text-xs font-mono font-bold border whitespace-nowrap shrink-0",
                             log.source === "PIPEDRIVE"
                               ? "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800"
                               : log.source === "SINCH"
@@ -180,18 +180,18 @@ export function WebhookInspector({
                   <h3 className="text-xs sm:text-sm font-bold text-[var(--color-text-primary)] truncate">
                     Event: {selectedLog.event}
                   </h3>
-                  <span className="text-[11px] text-[var(--color-text-muted)] font-mono">
+                  <span className="text-xs text-[var(--color-text-muted)] font-mono">
                     ID: {selectedLog.id} • {selectedLog.timestamp}
                   </span>
                 </div>
-                <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 whitespace-nowrap shrink-0">
+                <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 whitespace-nowrap shrink-0">
                   {selectedLog.status}
                 </span>
               </div>
 
               <div className="space-y-2 text-xs">
                 <div>
-                  <span className="text-[var(--color-text-muted)] block text-[11px] font-medium uppercase tracking-wider">
+                  <span className="text-[var(--color-text-muted)] block text-xs font-medium uppercase tracking-wider">
                     Target Entity:
                   </span>
                   <div className="font-semibold text-[var(--color-text-primary)] font-mono mt-0.5">
@@ -200,7 +200,7 @@ export function WebhookInspector({
                 </div>
 
                 <div>
-                  <span className="text-[var(--color-text-muted)] block text-[11px] font-medium uppercase tracking-wider">
+                  <span className="text-[var(--color-text-muted)] block text-xs font-medium uppercase tracking-wider">
                     Processing Summary:
                   </span>
                   <div className="text-[var(--color-text-secondary)] mt-0.5 leading-relaxed bg-[var(--color-panel-subtle)] p-2.5 rounded-lg border border-[var(--color-border)]">
@@ -209,7 +209,7 @@ export function WebhookInspector({
                 </div>
 
                 <div>
-                  <span className="text-[var(--color-text-muted)] block text-[11px] font-medium uppercase tracking-wider">
+                  <span className="text-[var(--color-text-muted)] block text-xs font-medium uppercase tracking-wider">
                     Execution Latency:
                   </span>
                   <div className="font-mono text-emerald-600 dark:text-emerald-400 font-bold mt-0.5">
@@ -218,10 +218,10 @@ export function WebhookInspector({
                 </div>
 
                 <div className="pt-2">
-                  <span className="text-[var(--color-text-muted)] block text-[11px] font-medium uppercase tracking-wider mb-1">
+                  <span className="text-[var(--color-text-muted)] block text-xs font-medium uppercase tracking-wider mb-1">
                     Raw HTTP Headers & Signature:
                   </span>
-                  <pre className="p-2.5 rounded-md bg-slate-950 text-slate-100 text-[11px] font-mono overflow-x-auto">
+                  <pre className="p-2.5 rounded-md bg-slate-950 text-slate-100 text-xs font-mono overflow-x-auto">
 {`X-Pipedrive-Signature: sha256=9f8a8b...
 X-Sinch-Timestamp: 2026-09-14T08:12:04Z
 Content-Type: application/json

@@ -73,7 +73,7 @@ export function Navbar({
               <MessageSquare className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
               <span>1. AI SMS Agent (Sinch)</span>
               {activeHandoverCount > 0 && (
-                <span className="ml-1 px-1.5 py-0.2 rounded-full bg-amber-500 text-white text-[10px] font-bold shrink-0">
+                <span className="ml-1 px-1.5 py-0.2 rounded-full bg-amber-500 text-white text-xs font-bold shrink-0">
                   {activeHandoverCount}
                 </span>
               )}
@@ -166,7 +166,7 @@ export function Navbar({
             <MessageSquare className="h-3.5 w-3.5 shrink-0" />
             <span>AI SMS</span>
             {activeHandoverCount > 0 && (
-              <span className="ml-1 px-1.5 py-0.2 rounded-full bg-amber-400 text-slate-900 text-[10px] font-bold shrink-0">
+              <span className="ml-1 px-1.5 py-0.2 rounded-full bg-amber-400 text-slate-900 text-xs font-bold shrink-0">
                 {activeHandoverCount}
               </span>
             )}

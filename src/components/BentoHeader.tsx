@@ -37,7 +37,7 @@ export function BentoHeader({
                 <Zap className="h-3.5 w-3.5 text-amber-500 shrink-0" />
                 <span>Pipedrive v1 Webhook</span>
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 whitespace-nowrap shrink-0">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-mono font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 whitespace-nowrap shrink-0">
                 84ms Latency
               </span>
             </div>
@@ -58,7 +58,7 @@ export function BentoHeader({
                 <Radio className="h-3.5 w-3.5 text-purple-500 shrink-0" />
                 <span>Sinch 2-Way SMS</span>
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 whitespace-nowrap shrink-0">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-mono font-semibold bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60 whitespace-nowrap shrink-0">
                 AU Custom Sender
               </span>
             </div>
@@ -79,7 +79,7 @@ export function BentoHeader({
                 <Layers className="h-3.5 w-3.5 text-blue-500 shrink-0" />
                 <span>Identity Matching</span>
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 whitespace-nowrap shrink-0">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-mono font-semibold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 whitespace-nowrap shrink-0">
                 Multi-Touch
               </span>
             </div>
@@ -100,7 +100,7 @@ export function BentoHeader({
                 <Database className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
                 <span>Power BI Pipeline</span>
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 whitespace-nowrap shrink-0">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-mono font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 whitespace-nowrap shrink-0">
                 Star Schema
               </span>
             </div>
