@@ -21,7 +21,7 @@ html_content = f"""<!DOCTYPE html>
   <style>
     @page {{
       size: letter portrait;
-      margin: 5.5mm 8.5mm 5.5mm 8.5mm;
+      margin: 6mm 8.5mm 6mm 8.5mm;
     }}
     * {{
       box-sizing: border-box;
@@ -33,30 +33,38 @@ html_content = f"""<!DOCTYPE html>
       padding: 0;
       height: 100%;
       background: #ffffff;
+      overflow: hidden;
     }}
     body {{
       font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #0f172a;
-      line-height: 1.36;
-      font-size: 10.4px;
+      line-height: 1.34;
+      font-size: 9.8px;
     }}
 
-    /* Header */
+    .page-container {{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      box-sizing: border-box;
+    }}
+
+    /* 1. Executive Header */
     .header {{
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
       border-bottom: 2px solid #2563eb;
-      padding-bottom: 7px;
-      margin-bottom: 7px;
+      padding-bottom: 6px;
     }}
     .header-left {{
       flex: 1;
       min-width: 0;
     }}
     .brand-title {{
-      font-size: 8.8px;
+      font-size: 8.5px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -64,7 +72,7 @@ html_content = f"""<!DOCTYPE html>
       margin-bottom: 2px;
     }}
     h1 {{
-      font-size: 15.5px;
+      font-size: 15px;
       font-weight: 800;
       color: #0f172a;
       margin: 0 0 2px 0;
@@ -72,7 +80,7 @@ html_content = f"""<!DOCTYPE html>
       line-height: 1.15;
     }}
     .subtitle {{
-      font-size: 9px;
+      font-size: 8.8px;
       color: #475569;
       margin: 0;
       line-height: 1.25;
@@ -83,7 +91,7 @@ html_content = f"""<!DOCTYPE html>
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       padding: 6px 10px;
-      font-size: 8.8px;
+      font-size: 8.5px;
       text-align: right;
       line-height: 1.38;
       box-shadow: 0 1px 2px rgba(0,0,0,0.02);
@@ -104,15 +112,15 @@ html_content = f"""<!DOCTYPE html>
       margin-left: 3px;
     }}
 
-    /* Section Headings */
+    /* 2. Scope Table */
     .section-header {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 7px 0 5px 0;
+      margin-bottom: 4px;
     }}
     .section-title {{
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -122,50 +130,47 @@ html_content = f"""<!DOCTYPE html>
       margin: 0;
     }}
     .section-meta {{
-      font-size: 8.8px;
+      font-size: 8.5px;
       color: #64748b;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }}
-
-    /* Table */
     table {{
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 7px;
     }}
     th {{
       background: #f1f5f9;
       color: #334155;
       font-weight: 700;
       text-transform: uppercase;
-      font-size: 8.8px;
+      font-size: 8.5px;
       letter-spacing: 0.04em;
       border: 1px solid #cbd5e1;
-      padding: 5px 7px;
+      padding: 4px 6px;
       text-align: left;
     }}
     td {{
       border: 1px solid #e2e8f0;
-      padding: 6.5px 7px;
-      font-size: 9.3px;
+      padding: 4.8px 6px;
+      font-size: 8.8px;
       vertical-align: top;
     }}
     .phase-num {{
       font-weight: 800;
       color: #1e293b;
-      font-size: 9.3px;
+      font-size: 8.8px;
       white-space: nowrap;
     }}
     .phase-name {{
       font-weight: 700;
       color: #0f172a;
-      font-size: 9.8px;
+      font-size: 9.2px;
     }}
     .phase-desc {{
       color: #475569;
-      font-size: 8.5px;
-      margin-top: 1.5px;
-      line-height: 1.25;
+      font-size: 8px;
+      margin-top: 1px;
+      line-height: 1.22;
     }}
     .phase-0-row {{
       background: #f0fdf4;
@@ -182,35 +187,34 @@ html_content = f"""<!DOCTYPE html>
     }}
     .total-row td {{
       border: 1px solid #0f172a;
-      padding: 6px 7px;
-      font-size: 9.8px;
+      padding: 5px 6px;
+      font-size: 9.2px;
     }}
 
-    /* 2-Column Grid */
+    /* 3. 2-Column Grid */
     .grid-2col {{
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 7px;
-      margin-bottom: 7px;
     }}
     .card-box {{
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       background: #f8fafc;
-      padding: 8px 10px;
+      padding: 6.5px 9px;
     }}
     .card-box-title {{
-      font-size: 9.2px;
+      font-size: 8.8px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: #1e293b;
-      margin: 0 0 4px 0;
+      margin: 0 0 3.5px 0;
       display: flex;
       align-items: center;
       gap: 4px;
       border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 3px;
+      padding-bottom: 2.5px;
     }}
     .milestone-item {{
       display: flex;
@@ -218,8 +222,8 @@ html_content = f"""<!DOCTYPE html>
       align-items: center;
       gap: 6px;
       border-bottom: 1px dotted #cbd5e1;
-      padding: 3px 0;
-      font-size: 8.5px;
+      padding: 2.5px 0;
+      font-size: 8px;
     }}
     .milestone-item:last-child {{
       border-bottom: none;
@@ -235,12 +239,12 @@ html_content = f"""<!DOCTYPE html>
       white-space: nowrap;
     }}
     .guardrail-item {{
-      font-size: 8.4px;
+      font-size: 8px;
       color: #334155;
-      margin-bottom: 3.5px;
-      padding-left: 11px;
+      margin-bottom: 2.5px;
+      padding-left: 10px;
       position: relative;
-      line-height: 1.25;
+      line-height: 1.22;
     }}
     .guardrail-item:last-child {{
       margin-bottom: 0;
@@ -251,16 +255,15 @@ html_content = f"""<!DOCTYPE html>
       left: 0;
       color: #16a34a;
       font-weight: 800;
-      font-size: 8px;
+      font-size: 7.5px;
     }}
 
-    /* Commercial Terms Section */
+    /* 4. Commercial Terms Section */
     .terms-box {{
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       background: #ffffff;
-      padding: 8px 10px;
-      margin-bottom: 7px;
+      padding: 6.5px 9px;
     }}
     .terms-grid {{
       display: grid;
@@ -268,40 +271,39 @@ html_content = f"""<!DOCTYPE html>
       gap: 8px;
     }}
     .term-col {{
-      font-size: 8.3px;
-      line-height: 1.25;
+      font-size: 7.8px;
+      line-height: 1.22;
     }}
     .term-title {{
       font-weight: 800;
       color: #2563eb;
       text-transform: uppercase;
-      font-size: 8.3px;
-      margin-bottom: 2px;
+      font-size: 7.8px;
+      margin-bottom: 1.5px;
     }}
     .term-body {{
       color: #475569;
     }}
 
-    /* Formal Authorization & Acceptance Block */
+    /* 5. Formal Acceptance Authorization Block */
     .auth-block {{
       border: 1px solid #94a3b8;
       border-radius: 6px;
       background: #f8fafc;
-      padding: 9px 12px;
-      margin-bottom: 7px;
+      padding: 7px 11px;
     }}
     .auth-title {{
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: #0f172a;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #cbd5e1;
-      padding-bottom: 3px;
+      padding-bottom: 2.5px;
     }}
     .auth-grid {{
       display: grid;
@@ -311,60 +313,60 @@ html_content = f"""<!DOCTYPE html>
     .auth-party {{
       display: flex;
       flex-direction: column;
-      gap: 3px;
-      font-size: 8.4px;
+      gap: 2.5px;
+      font-size: 8px;
     }}
     .auth-party-title {{
       font-weight: 700;
       color: #334155;
       text-transform: uppercase;
-      font-size: 8.2px;
+      font-size: 7.8px;
       margin-bottom: 1px;
     }}
     .auth-sign-line {{
       display: flex;
       align-items: flex-end;
       gap: 8px;
-      margin-top: 5px;
+      margin-top: 4px;
     }}
     .auth-sign-field {{
       flex: 1;
       border-bottom: 1.2px solid #475569;
-      min-height: 35px;
+      min-height: 26px;
       display: flex;
       align-items: flex-end;
       font-family: "Brush Script MT", "Caveat", cursive, sans-serif;
-      font-size: 13.5px;
+      font-size: 14px;
       color: #1e3a8a;
       padding-left: 4px;
-      padding-bottom: 2px;
+      padding-bottom: 1px;
     }}
     .auth-date-field {{
       width: 75px;
       border-bottom: 1.2px solid #475569;
-      min-height: 35px;
+      min-height: 26px;
       font-family: ui-monospace, monospace;
-      font-size: 8.8px;
+      font-size: 8.2px;
       color: #334155;
       text-align: center;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      padding-bottom: 2px;
+      padding-bottom: 1px;
     }}
     .auth-label {{
-      font-size: 7.4px;
+      font-size: 7px;
       color: #64748b;
       text-transform: uppercase;
-      margin-top: 2px;
+      margin-top: 1.5px;
     }}
 
-    /* Footer Container */
+    /* 6. Executive Signature Footer */
     .footer-container {{
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       background: #f8fafc;
-      padding: 8px 12px;
+      padding: 6px 11px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -379,8 +381,8 @@ html_content = f"""<!DOCTYPE html>
       min-width: 0;
     }}
     .founder-avatar {{
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       object-fit: cover;
       border: 1.5px solid #2563eb;
@@ -390,13 +392,13 @@ html_content = f"""<!DOCTYPE html>
     .founder-info {{
       display: flex;
       flex-direction: column;
-      gap: 1.5px;
+      gap: 1px;
       min-width: 0;
     }}
     .founder-name {{
-      font-size: 9.2px;
+      font-size: 8.8px;
       color: #0f172a;
-      line-height: 1.2;
+      line-height: 1.18;
       white-space: nowrap;
     }}
     .founder-name strong {{
@@ -404,9 +406,9 @@ html_content = f"""<!DOCTYPE html>
       font-weight: 800;
     }}
     .founder-company {{
-      font-size: 8.4px;
+      font-size: 8px;
       color: #334155;
-      line-height: 1.2;
+      line-height: 1.18;
       white-space: nowrap;
     }}
     .founder-company strong {{
@@ -414,25 +416,25 @@ html_content = f"""<!DOCTYPE html>
       font-weight: 700;
     }}
     .founder-sub {{
-      font-size: 7.8px;
+      font-size: 7.5px;
       color: #475569;
-      line-height: 1.2;
+      line-height: 1.18;
       white-space: nowrap;
     }}
     .footer-brand {{
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 3px;
+      gap: 2.5px;
       flex-shrink: 0;
     }}
     .business-logo {{
-      height: 18px;
+      height: 17px;
       width: auto;
       object-fit: contain;
     }}
     .demo-badge {{
-      font-size: 8px;
+      font-size: 7.6px;
       color: #1d4ed8;
       background: #eff6ff;
       border: 1px solid #bfdbfe;
@@ -446,10 +448,11 @@ html_content = f"""<!DOCTYPE html>
   </style>
 </head>
 <body>
-  <!-- Executive Header -->
+<div class="page-container">
+  <!-- 1. Executive Header -->
   <div class="header">
     <div class="header-left">
-      <div class="brand-title">BarakahSoft LLC • Enterprise Systems Engineering • Document #BS-2026-PIPE-049</div>
+      <div class="brand-title">BarakahSoft LLC • Enterprise Systems Engineering • Ref #BS-2026-PIPE-049</div>
       <h1>Pipedrive Enterprise Integration Engine</h1>
       <p class="subtitle">Direct v1 Webhook Pipeline, Two-Way Sinch SMS Gateway, AI Lead Qualification & Power BI Star Schema</p>
     </div>
@@ -461,93 +464,95 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- Scope Table -->
-  <div class="section-header">
-    <h2 class="section-title">Milestone Scope & Delivery Schedule</h2>
-    <div class="section-meta">Live Demo: https://pipedrive-integrations-hub.vercel.app</div>
+  <!-- 2. Scope Table -->
+  <div class="scope-block">
+    <div class="section-header">
+      <h2 class="section-title">Milestone Scope & Delivery Schedule</h2>
+      <div class="section-meta">Live Demo: https://pipedrive-integrations-hub.vercel.app</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 13%;">Phase</th>
+          <th style="width: 55%;">Engineering Deliverables & Architecture</th>
+          <th style="width: 10%; text-align: center;">Hours</th>
+          <th style="width: 10%; text-align: right;">Rate</th>
+          <th style="width: 12%; text-align: right;">Investment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="phase-0-row">
+          <td class="phase-num"><span class="phase-0-badge">Phase 0</span></td>
+          <td>
+            <div class="phase-name">Interactive Working Architecture Prototype & Webhook Cockpit</div>
+            <div class="phase-desc">Two-way Sinch SMS simulator with AI qualification, native Pipedrive v1 webhook inspector (&lt;150ms), deterministic identity matching graph, and relational Star Schema entity viewer. Delivered upfront in &lt;30m to eliminate all architectural risk.</div>
+          </td>
+          <td style="text-align: center; font-weight: 700; white-space: nowrap;">0.5 hrs (&lt;30m)</td>
+          <td style="text-align: right; color: #16a34a; font-weight: 700;">$0.00</td>
+          <td style="text-align: right; font-weight: 800; color: #16a34a;">$0.00 (Live)</td>
+        </tr>
+        <tr>
+          <td class="phase-num">Phase 1</td>
+          <td>
+            <div class="phase-name">Native Pipedrive Webhooks & Sinch 2-Way Gateway (Project 1)</div>
+            <div class="phase-desc">Zero-Zapier serverless webhook listener (&lt;150ms, HMAC-SHA256 signature verification), Sinch Australian Custom Sender ID configuration, E.164 normalization, bidirectional Person/Deal lookup, and transcript sync to Notes.</div>
+          </td>
+          <td style="text-align: center; font-weight: 600;">14 hrs</td>
+          <td style="text-align: right;">$40.00</td>
+          <td style="text-align: right; font-weight: 700;">$560.00</td>
+        </tr>
+        <tr>
+          <td class="phase-num">Phase 2</td>
+          <td>
+            <div class="phase-name">AI Qualification State Machine, Handover & TNZ Opt-Out (Project 1)</div>
+            <div class="phase-desc">Multi-turn qualification state machine (OpenAI GPT-4o / Claude fallback chain), intent classifier, live salesperson handover (auto-assigns high-priority call task to Shaun M.), and Spam Act 2003 / TNZ opt-out interception (`STOP`).</div>
+          </td>
+          <td style="text-align: center; font-weight: 600;">13 hrs</td>
+          <td style="text-align: right;">$40.00</td>
+          <td style="text-align: right; font-weight: 700;">$520.00</td>
+        </tr>
+        <tr>
+          <td class="phase-num">Phase 3</td>
+          <td>
+            <div class="phase-name">Website Tracking, Identity Resolution & Lead Scoring (Project 2)</div>
+            <div class="phase-desc">First-party cookie & fingerprint ingestion, multi-touch UTM attribution graph, deterministic identity matching on form/SMS event, and real-time computation writing `lead_score`, `intent_tier`, and touchpoints to Pipedrive.</div>
+          </td>
+          <td style="text-align: center; font-weight: 600;">11 hrs</td>
+          <td style="text-align: right;">$40.00</td>
+          <td style="text-align: right; font-weight: 700;">$440.00</td>
+        </tr>
+        <tr>
+          <td class="phase-num">Phase 4</td>
+          <td>
+            <div class="phase-name">Power BI Star Schema Pipeline & Delta Sync (Project 3)</div>
+            <div class="phase-desc">Relational dimensional modeling (Fact_Deals, Dim_Persons, Fact_Activities, Dim_Stages), delta sync engine handling Pipedrive rate limits (40-80 req/s batch pagination), and OData/REST data feed endpoints for scheduled refresh.</div>
+          </td>
+          <td style="text-align: center; font-weight: 600;">12 hrs</td>
+          <td style="text-align: right;">$40.00</td>
+          <td style="text-align: right; font-weight: 700;">$480.00</td>
+        </tr>
+        <tr>
+          <td class="phase-num">Phase 5</td>
+          <td>
+            <div class="phase-name">End-to-End Staging, Telco Load Testing & Production Go-Live</div>
+            <div class="phase-desc">Live Australian telco route verification, duplicate webhook idempotency, out-of-order recovery, complete TypeScript repository handoff, environment runbook, and 14 days post-launch support.</div>
+          </td>
+          <td style="text-align: center; font-weight: 600;">7 hrs</td>
+          <td style="text-align: right;">$40.00</td>
+          <td style="text-align: right; font-weight: 700;">$280.00</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="2" style="text-align: left; font-weight: 800;">TOTAL COMPLETE TURNKEY ROLLOUT (ALL 3 PROJECTS + STAGING)</td>
+          <td style="text-align: center; font-weight: 800;">57 hrs</td>
+          <td style="text-align: right; font-weight: 800;">$40.00</td>
+          <td style="text-align: right; font-weight: 800;">$2,280.00</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th style="width: 13%;">Phase</th>
-        <th style="width: 55%;">Engineering Deliverables & Architecture</th>
-        <th style="width: 10%; text-align: center;">Hours</th>
-        <th style="width: 10%; text-align: right;">Rate</th>
-        <th style="width: 12%; text-align: right;">Investment</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="phase-0-row">
-        <td class="phase-num"><span class="phase-0-badge">Phase 0</span></td>
-        <td>
-          <div class="phase-name">Interactive Working Architecture Prototype & Webhook Cockpit</div>
-          <div class="phase-desc">Two-way Sinch SMS simulator with AI qualification, native Pipedrive v1 webhook inspector (&lt;150ms), deterministic identity matching graph, and relational Star Schema entity viewer. Delivered upfront in &lt;30m to eliminate all architectural risk.</div>
-        </td>
-        <td style="text-align: center; font-weight: 700; white-space: nowrap;">0.5 hrs (&lt;30m)</td>
-        <td style="text-align: right; color: #16a34a; font-weight: 700;">$0.00</td>
-        <td style="text-align: right; font-weight: 800; color: #16a34a;">$0.00 (Live)</td>
-      </tr>
-      <tr>
-        <td class="phase-num">Phase 1</td>
-        <td>
-          <div class="phase-name">Native Pipedrive Webhooks & Sinch 2-Way Gateway (Project 1)</div>
-          <div class="phase-desc">Zero-Zapier serverless webhook listener (&lt;150ms, HMAC-SHA256 signature verification), Sinch Australian Custom Sender ID configuration, E.164 normalization, bidirectional Person/Deal lookup, and transcript sync to Notes.</div>
-        </td>
-        <td style="text-align: center; font-weight: 600;">14 hrs</td>
-        <td style="text-align: right;">$40.00</td>
-        <td style="text-align: right; font-weight: 700;">$560.00</td>
-      </tr>
-      <tr>
-        <td class="phase-num">Phase 2</td>
-        <td>
-          <div class="phase-name">AI Qualification State Machine, Handover & TNZ Opt-Out (Project 1)</div>
-          <div class="phase-desc">Multi-turn qualification state machine (OpenAI GPT-4o / Claude fallback chain), intent classifier, live salesperson handover (auto-assigns high-priority call task to Shaun M.), and Spam Act 2003 / TNZ opt-out interception (`STOP`).</div>
-        </td>
-        <td style="text-align: center; font-weight: 600;">13 hrs</td>
-        <td style="text-align: right;">$40.00</td>
-        <td style="text-align: right; font-weight: 700;">$520.00</td>
-      </tr>
-      <tr>
-        <td class="phase-num">Phase 3</td>
-        <td>
-          <div class="phase-name">Website Tracking, Identity Resolution & Lead Scoring (Project 2)</div>
-          <div class="phase-desc">First-party cookie & fingerprint ingestion, multi-touch UTM attribution graph, deterministic identity matching on form/SMS event, and real-time computation writing `lead_score`, `intent_tier`, and touchpoints to Pipedrive.</div>
-        </td>
-        <td style="text-align: center; font-weight: 600;">11 hrs</td>
-        <td style="text-align: right;">$40.00</td>
-        <td style="text-align: right; font-weight: 700;">$440.00</td>
-      </tr>
-      <tr>
-        <td class="phase-num">Phase 4</td>
-        <td>
-          <div class="phase-name">Power BI Star Schema Pipeline & Delta Sync (Project 3)</div>
-          <div class="phase-desc">Relational dimensional modeling (Fact_Deals, Dim_Persons, Fact_Activities, Dim_Stages), delta sync engine handling Pipedrive rate limits (40-80 req/s batch pagination), and OData/REST data feed endpoints for scheduled refresh.</div>
-        </td>
-        <td style="text-align: center; font-weight: 600;">12 hrs</td>
-        <td style="text-align: right;">$40.00</td>
-        <td style="text-align: right; font-weight: 700;">$480.00</td>
-      </tr>
-      <tr>
-        <td class="phase-num">Phase 5</td>
-        <td>
-          <div class="phase-name">End-to-End Staging, Telco Load Testing & Production Go-Live</div>
-          <div class="phase-desc">Live Australian telco route verification, duplicate webhook idempotency, out-of-order recovery, complete TypeScript repository handoff, environment runbook, and 14 days post-launch support.</div>
-        </td>
-        <td style="text-align: center; font-weight: 600;">7 hrs</td>
-        <td style="text-align: right;">$40.00</td>
-        <td style="text-align: right; font-weight: 700;">$280.00</td>
-      </tr>
-      <tr class="total-row">
-        <td colspan="2" style="text-align: left; font-weight: 800;">TOTAL COMPLETE TURNKEY ROLLOUT (ALL 3 PROJECTS + STAGING)</td>
-        <td style="text-align: center; font-weight: 800;">57 hrs</td>
-        <td style="text-align: right; font-weight: 800;">$40.00</td>
-        <td style="text-align: right; font-weight: 800;">$2,280.00</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- 2-Column Milestone & Architecture Grid -->
+  <!-- 3. 2-Column Milestone & Architecture Grid -->
   <div class="grid-2col">
     <!-- Modular Milestone Options Box -->
     <div class="card-box">
@@ -579,9 +584,9 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- Commercial Terms & Conditions -->
+  <!-- 4. Commercial Terms & Conditions -->
   <div class="terms-box">
-    <div class="card-box-title" style="margin-bottom: 4px;">Commercial Terms & Production Engagement Conditions</div>
+    <div class="card-box-title" style="margin-bottom: 3.5px;">Commercial Terms & Production Engagement Conditions</div>
     <div class="terms-grid">
       <div class="term-col">
         <div class="term-title">Escrow Milestones</div>
@@ -602,22 +607,22 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- Formal Acceptance Authorization -->
+  <!-- 5. Formal Acceptance Authorization -->
   <div class="auth-block">
     <div class="auth-title">
       <span>Formal Authorization & Engagement Acceptance</span>
-      <span style="font-weight: 500; font-size: 7.6px; color: #475569;">Legally binding upon signature by authorized representatives</span>
+      <span style="font-weight: 500; font-size: 7.4px; color: #475569;">Binding upon signature by authorized representatives</span>
     </div>
     <div class="auth-grid">
       <div class="auth-party">
         <div class="auth-party-title">Authorized Provider: BarakahSoft LLC (Wyoming, USA)</div>
         <div>Signatory: <strong>Shakil Ahmed</strong> • Principal Systems Architect & Founder</div>
         <div class="auth-sign-line">
-          <div class="auth-sign-field">Shakil Ahmed (Digital Seal Verified)</div>
+          <div class="auth-sign-field">Shakil Ahmed</div>
           <div class="auth-date-field">14 Sep 2026</div>
         </div>
         <div style="display: flex; justify-content: space-between;">
-          <span class="auth-label">Authorized Signature</span>
+          <span class="auth-label">Authorized Provider Signature</span>
           <span class="auth-label" style="width: 75px; text-align: center;">Date</span>
         </div>
       </div>
@@ -626,25 +631,25 @@ html_content = f"""<!DOCTYPE html>
         <div class="auth-party-title">Authorized Client: Shaun M. (Perth, WA)</div>
         <div>Signatory: <strong>Shaun M.</strong> • Client Representative</div>
         <div class="auth-sign-line">
-          <div class="auth-sign-field" style="color: #64748b; font-family: inherit; font-size: 8.5px; font-style: italic;">[ Accepted via Upwork Contract Offer / Signature ]</div>
+          <div class="auth-sign-field" style="color: #64748b; font-family: inherit; font-size: 8.2px; font-style: italic;">[ Accepted via Upwork Contract Offer / Sign-off ]</div>
           <div class="auth-date-field">___ / ___ / 2026</div>
         </div>
         <div style="display: flex; justify-content: space-between;">
-          <span class="auth-label">Client Acceptance Signature</span>
+          <span class="auth-label">Authorized Client Signature</span>
           <span class="auth-label" style="width: 75px; text-align: center;">Date</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Executive Signature Footer -->
+  <!-- 6. Executive Signature Footer -->
   <div class="footer-container">
     <div class="footer-founder">
       <img src="data:image/jpeg;base64,{headshot_b64}" alt="Shakil Ahmed" class="founder-avatar" />
       <div class="founder-info">
         <div class="founder-name"><strong>Shakil Ahmed</strong> • Founder & Lead Systems Architect (12+ Yrs Exp)</div>
         <div class="founder-company"><strong>BarakahSoft LLC</strong> • Enterprise Pipedrive Integrations Partner</div>
-        <div class="founder-sub">Former Lead Engineer at Legiit ($1M ARR Command Center) • Top Rated Upwork Expert</div>
+        <div class="founder-sub">Former Lead Engineer at Legiit ($1M ARR Command Center) • Verified Upwork Partner</div>
       </div>
     </div>
     <div class="footer-brand">
@@ -652,6 +657,7 @@ html_content = f"""<!DOCTYPE html>
       <a href="https://pipedrive-integrations-hub.vercel.app" target="_blank" class="demo-badge">pipedrive-integrations-hub.vercel.app</a>
     </div>
   </div>
+</div>
 </body>
 </html>
 """
