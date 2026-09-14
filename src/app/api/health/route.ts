@@ -1,12 +1,23 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  const hasOpenAi = Boolean(process.env.OPENAI_API_KEY);
+  const hasGemini = Boolean(process.env.GEMINI_API_KEY);
+
   return NextResponse.json({
     status: "healthy",
     timestamp: new Date().toISOString(),
     service: "pipedrive-integrations-hub",
     region: "ap-southeast-2 (Sydney/Perth Direct)",
     integrations: {
+      aiQualificationEngine: {
+        status: "ACTIVE",
+        primaryProvider: hasOpenAi ? "OpenAI (GPT-4o-mini)" : hasGemini ? "Google Gemini (2.0 Flash)" : "Deterministic Intent State Machine",
+        fallbackProvider: hasOpenAi && hasGemini ? "Google Gemini (2.0 Flash)" : "Regulatory Deterministic Rule Engine",
+        multiTurnQualification: true,
+        salespersonHandover: "Shaun M. (Perth, WA)",
+        spamAct2003Compliance: true
+      },
       pipedriveNativeWebhooks: {
         status: "ACTIVE",
         protocol: "v1 REST + HMAC-SHA256",

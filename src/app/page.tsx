@@ -48,13 +48,10 @@ export default function HomePage() {
     setActiveTab("sms");
   };
 
-  const handleSendInboundSms = (dealId: number, text: string) => {
+  const handleSendInboundSms = async (dealId: number, text: string) => {
     const timestamp = new Date().toLocaleTimeString("en-AU", { hour: "2-digit", minute: "2-digit" });
     const targetDeal = deals.find((d) => d.id === dealId);
     const targetPerson = persons.find((p) => p.id === targetDeal?.personId);
-
-    const isStopWord = /stop|unsubscribe|cancel|quit/i.test(text.trim());
-    const isHandoverTrigger = /salesperson|salesman|human|talk|speak|call me|urgent|drawings/i.test(text.trim());
 
     // 1. Add inbound message
     const inboundMsg: SmsMessage = {
@@ -64,8 +61,7 @@ export default function HomePage() {
       recipient: "Sinch Gateway (+61 488 840 219)",
       text,
       timestamp,
-      deliveryStatus: "RECEIVED",
-      optOutDetected: isStopWord
+      deliveryStatus: "RECEIVED"
     };
 
     setConversations((prev) => ({
@@ -73,28 +69,40 @@ export default function HomePage() {
       [dealId]: [...(prev[dealId] || []), inboundMsg]
     }));
 
-    // Log inbound webhook event
-    const inboundLog: WebhookLogEvent = {
-      id: "wh_" + Date.now(),
-      timestamp: new Date().toLocaleTimeString("en-AU", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
-      source: "SINCH",
-      event: isStopWord ? "inbound_sms.opt_out" : "inbound_sms.received",
-      status: "PROCESSED",
-      latencyMs: Math.floor(75 + Math.random() * 45),
-      payloadSummary: isStopWord 
-        ? `Keyword '${text}' identified from ${targetPerson?.phone}. TNZ suppression activated.`
-        : `Inbound text received for Deal #${dealId}. Pipedrive Person #${targetPerson?.id} matched.`,
-      targetEntity: `Pipedrive Deal #${dealId} & Person #${targetPerson?.id}`
-    };
+    // 2. Call Real AI Qualification API
+    try {
+      const history = (conversations[dealId] || []).slice(-4).map((m) => ({
+        role: (m.direction === "INBOUND" ? "customer" : "assistant") as "customer" | "assistant",
+        text: m.text
+      }));
 
-    setWebhookLogs((prev) => [inboundLog, ...prev]);
+      const res = await fetch("/api/ai/qualify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: targetPerson?.name || "Customer",
+          dealTitle: targetDeal?.title || "Property Inquiry",
+          customerMessage: text,
+          conversationHistory: history,
+          assignedRep: targetDeal?.assignedRep || "Shaun M."
+        })
+      });
 
-    // 2. Process logic based on trigger
-    setTimeout(() => {
+      const json = await res.json();
+      const aiData = json?.data || {
+        reply: "Thanks for reaching out! Shaun M. has your inquiry on his desk and will follow up shortly.",
+        intentTier: "WARM",
+        aiConversationState: "ACTIVE",
+        handoverNeeded: false,
+        provider: "deterministic-fallback",
+        model: "intent-state-machine-v1",
+        latencyMs: 80,
+        reasoning: "Autonomous qualification"
+      };
+
       const replyTimestamp = new Date().toLocaleTimeString("en-AU", { hour: "2-digit", minute: "2-digit" });
 
-      if (isStopWord) {
-        // Opt-out logic under Australian Spam Act & TNZ
+      if (aiData.aiConversationState === "OPTED_OUT") {
         setPersons((prev) =>
           prev.map((p) =>
             p.id === targetPerson?.id
@@ -116,7 +124,7 @@ export default function HomePage() {
           direction: "OUTBOUND",
           sender: "Sinch Gateway (+61 488 840 219)",
           recipient: targetPerson?.phone || "+61 400 000 000",
-          text: "You have been unsubscribed. No further messages will be sent. Pipedrive record updated under Australian Spam Act & TNZ rules.",
+          text: aiData.reply,
           timestamp: replyTimestamp,
           deliveryStatus: "DELIVERED",
           aiGenerated: false,
@@ -128,8 +136,19 @@ export default function HomePage() {
           [dealId]: [...(prev[dealId] || []), optOutReply]
         }));
 
-      } else if (isHandoverTrigger) {
-        // Salesperson handover logic
+        const optOutLog: WebhookLogEvent = {
+          id: "wh_" + Date.now(),
+          timestamp: new Date().toLocaleTimeString("en-AU", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
+          source: "SINCH",
+          event: "inbound_sms.opt_out",
+          status: "PROCESSED",
+          latencyMs: aiData.latencyMs || 64,
+          payloadSummary: `Spam Act 2003 / TNZ opt-out keyword intercepted. Phone ${targetPerson?.phone} suppressed in Pipedrive.`,
+          targetEntity: `Pipedrive Person #${targetPerson?.id}`
+        };
+        setWebhookLogs((prev) => [optOutLog, ...prev]);
+
+      } else if (aiData.handoverNeeded || aiData.aiConversationState === "HANDOVER_PENDING") {
         setDeals((prev) =>
           prev.map((d) =>
             d.id === dealId
@@ -138,12 +157,20 @@ export default function HomePage() {
           )
         );
 
+        setPersons((prev) =>
+          prev.map((p) =>
+            p.id === targetPerson?.id
+              ? { ...p, intentTier: "HOT", leadScore: Math.min(100, p.leadScore + 25) }
+              : p
+          )
+        );
+
         const handoverReply: SmsMessage = {
           id: "sms_reply_" + Date.now(),
           direction: "OUTBOUND",
           sender: "Sinch Gateway (+61 488 840 219)",
           recipient: targetPerson?.phone || "+61 400 000 000",
-          text: `Understood! I've paused autonomous AI and escalated your file directly to Shaun M. with high priority. He has your phone number and request on his Pipedrive desk and will reach out shortly.`,
+          text: aiData.reply,
           timestamp: replyTimestamp,
           deliveryStatus: "DELIVERED",
           aiGenerated: true,
@@ -155,28 +182,33 @@ export default function HomePage() {
           [dealId]: [...(prev[dealId] || []), handoverReply]
         }));
 
-        // Log Pipedrive activity creation
         const activityLog: WebhookLogEvent = {
           id: "wh_act_" + Date.now(),
           timestamp: new Date().toLocaleTimeString("en-AU", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
           source: "PIPEDRIVE",
           event: "activity.created",
           status: "SUCCESS",
-          latencyMs: 82,
-          payloadSummary: `High-priority Urgent Call task dispatched to Shaun M. for Deal #${dealId}.`,
+          latencyMs: aiData.latencyMs || 92,
+          payloadSummary: `[${(aiData.provider || "AI").toUpperCase()} ${aiData.model || "LLM"}] Intent HOT. Urgent Call task assigned to Shaun M.`,
           targetEntity: `Pipedrive Activity #urgent_${dealId}`
         };
-
         setWebhookLogs((prev) => [activityLog, ...prev]);
 
       } else {
-        // Autonomous AI qualification reply
+        setPersons((prev) =>
+          prev.map((p) =>
+            p.id === targetPerson?.id
+              ? { ...p, intentTier: aiData.intentTier, leadScore: Math.min(100, p.leadScore + 10) }
+              : p
+          )
+        );
+
         const standardReply: SmsMessage = {
           id: "sms_reply_" + Date.now(),
           direction: "OUTBOUND",
           sender: "Sinch Gateway (+61 488 840 219)",
           recipient: targetPerson?.phone || "+61 400 000 000",
-          text: `Thanks for the details! I've updated your Pipedrive preferences for the Perth building team. Would you like me to send over our 2026 inclusions catalog, or schedule a 10-minute discovery chat with one of our design consultants this week?`,
+          text: aiData.reply,
           timestamp: replyTimestamp,
           deliveryStatus: "DELIVERED",
           aiGenerated: true
@@ -186,8 +218,22 @@ export default function HomePage() {
           ...prev,
           [dealId]: [...(prev[dealId] || []), standardReply]
         }));
+
+        const aiLog: WebhookLogEvent = {
+          id: "wh_ai_" + Date.now(),
+          timestamp: new Date().toLocaleTimeString("en-AU", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
+          source: "PIPEDRIVE",
+          event: "sms.ai_qualification",
+          status: "SUCCESS",
+          latencyMs: aiData.latencyMs || 84,
+          payloadSummary: `[${(aiData.provider || "AI").toUpperCase()} ${aiData.model || "LLM"}] Intent: ${aiData.intentTier}. ${aiData.reasoning || "Multi-turn qualification"}`,
+          targetEntity: `Pipedrive Deal #${dealId}`
+        };
+        setWebhookLogs((prev) => [aiLog, ...prev]);
       }
-    }, 600);
+    } catch (err) {
+      console.error("AI qualification dispatch failed:", err);
+    }
   };
 
   const handleTriggerManualHandover = (dealId: number) => {

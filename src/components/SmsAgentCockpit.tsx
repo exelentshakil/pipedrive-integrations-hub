@@ -35,7 +35,7 @@ interface SmsAgentCockpitProps {
   deals: PipedriveDeal[];
   persons: PipedrivePerson[];
   conversations: Record<number, SmsMessage[]>;
-  onSendInboundSms: (dealId: number, text: string) => void;
+  onSendInboundSms: (dealId: number, text: string) => Promise<void> | void;
   onTriggerManualHandover: (dealId: number) => void;
   onSelectDeal: (dealId: number) => void;
   selectedDealId: number;
@@ -57,18 +57,20 @@ export function SmsAgentCockpit({
   const selectedPerson = persons.find((p) => p.id === selectedDeal.personId) || persons[0];
   const messages = conversations[selectedDeal.id] || [];
 
-  const handleSend = (textToSend?: string) => {
+  const handleSend = async (textToSend?: string) => {
     const text = textToSend || inputText;
     if (!text.trim()) return;
 
     setInputText("");
     setIsSimulatingAi(true);
 
-    onSendInboundSms(selectedDeal.id, text);
-
-    setTimeout(() => {
+    try {
+      await onSendInboundSms(selectedDeal.id, text);
+    } catch (err) {
+      console.error("Inbound SMS send failed:", err);
+    } finally {
       setIsSimulatingAi(false);
-    }, 800);
+    }
   };
 
   const handlePresetMessage = (presetText: string) => {
@@ -281,7 +283,7 @@ export function SmsAgentCockpit({
               {isSimulatingAi && (
                 <div className="flex items-center gap-2 text-xs font-mono text-[var(--color-brand-primary)] bg-purple-50 dark:bg-purple-950/40 p-2.5 rounded-lg border border-purple-200 dark:border-purple-800 w-fit">
                   <Sparkles className="h-3.5 w-3.5 animate-spin shrink-0" />
-                  <span>AI Agent analyzing prompt & checking Pipedrive deal context...</span>
+                  <span>Real AI Agent (GPT-4o / Gemini) analyzing intent & qualifying deal...</span>
                 </div>
               )}
             </div>

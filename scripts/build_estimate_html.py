@@ -17,11 +17,11 @@ html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Production Scope & Estimate - Pipedrive Integration Engine</title>
+  <title>Production Scope & Formal Estimate - Pipedrive Enterprise Integration Engine</title>
   <style>
     @page {{
       size: letter portrait;
-      margin: 7mm 9mm 7mm 9mm;
+      margin: 5.5mm 8.5mm 5.5mm 8.5mm;
     }}
     * {{
       box-sizing: border-box;
@@ -37,15 +37,17 @@ html_content = f"""<!DOCTYPE html>
     body {{
       font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #0f172a;
-      line-height: 1.32;
-      font-size: 9.5px;
+      line-height: 1.36;
+      font-size: 10.4px;
     }}
+
+    /* Header */
     .header {{
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      border-bottom: 1.5px solid #e2e8f0;
+      border-bottom: 2px solid #2563eb;
       padding-bottom: 7px;
       margin-bottom: 7px;
     }}
@@ -54,7 +56,7 @@ html_content = f"""<!DOCTYPE html>
       min-width: 0;
     }}
     .brand-title {{
-      font-size: 8px;
+      font-size: 8.8px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -62,15 +64,15 @@ html_content = f"""<!DOCTYPE html>
       margin-bottom: 2px;
     }}
     h1 {{
-      font-size: 14.5px;
+      font-size: 15.5px;
       font-weight: 800;
       color: #0f172a;
       margin: 0 0 2px 0;
       letter-spacing: -0.02em;
-      line-height: 1.2;
+      line-height: 1.15;
     }}
     .subtitle {{
-      font-size: 8.8px;
+      font-size: 9px;
       color: #475569;
       margin: 0;
       line-height: 1.25;
@@ -80,10 +82,10 @@ html_content = f"""<!DOCTYPE html>
       background: #f8fafc;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
-      padding: 5px 9px;
-      font-size: 8.5px;
+      padding: 6px 10px;
+      font-size: 8.8px;
       text-align: right;
-      line-height: 1.35;
+      line-height: 1.38;
       box-shadow: 0 1px 2px rgba(0,0,0,0.02);
     }}
     .meta-card strong {{
@@ -101,14 +103,16 @@ html_content = f"""<!DOCTYPE html>
       text-transform: uppercase;
       margin-left: 3px;
     }}
+
+    /* Section Headings */
     .section-header {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 6px 0 5px 0;
+      margin: 7px 0 5px 0;
     }}
     .section-title {{
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -118,10 +122,12 @@ html_content = f"""<!DOCTYPE html>
       margin: 0;
     }}
     .section-meta {{
-      font-size: 8.5px;
+      font-size: 8.8px;
       color: #64748b;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }}
+
+    /* Table */
     table {{
       width: 100%;
       border-collapse: collapse;
@@ -132,33 +138,33 @@ html_content = f"""<!DOCTYPE html>
       color: #334155;
       font-weight: 700;
       text-transform: uppercase;
-      font-size: 8.5px;
+      font-size: 8.8px;
       letter-spacing: 0.04em;
       border: 1px solid #cbd5e1;
-      padding: 4px 6px;
+      padding: 5px 7px;
       text-align: left;
     }}
     td {{
       border: 1px solid #e2e8f0;
-      padding: 4px 6px;
-      font-size: 9px;
+      padding: 6.5px 7px;
+      font-size: 9.3px;
       vertical-align: top;
     }}
     .phase-num {{
       font-weight: 800;
       color: #1e293b;
-      font-size: 9px;
+      font-size: 9.3px;
       white-space: nowrap;
     }}
     .phase-name {{
       font-weight: 700;
       color: #0f172a;
-      font-size: 9.5px;
+      font-size: 9.8px;
     }}
     .phase-desc {{
       color: #475569;
-      font-size: 8.2px;
-      margin-top: 1px;
+      font-size: 8.5px;
+      margin-top: 1.5px;
       line-height: 1.25;
     }}
     .phase-0-row {{
@@ -176,9 +182,11 @@ html_content = f"""<!DOCTYPE html>
     }}
     .total-row td {{
       border: 1px solid #0f172a;
-      padding: 5px 6px;
-      font-size: 9.5px;
+      padding: 6px 7px;
+      font-size: 9.8px;
     }}
+
+    /* 2-Column Grid */
     .grid-2col {{
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -189,10 +197,10 @@ html_content = f"""<!DOCTYPE html>
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       background: #f8fafc;
-      padding: 6px 8px;
+      padding: 8px 10px;
     }}
     .card-box-title {{
-      font-size: 9px;
+      font-size: 9.2px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -210,8 +218,8 @@ html_content = f"""<!DOCTYPE html>
       align-items: center;
       gap: 6px;
       border-bottom: 1px dotted #cbd5e1;
-      padding: 2.5px 0;
-      font-size: 8.3px;
+      padding: 3px 0;
+      font-size: 8.5px;
     }}
     .milestone-item:last-child {{
       border-bottom: none;
@@ -227,10 +235,10 @@ html_content = f"""<!DOCTYPE html>
       white-space: nowrap;
     }}
     .guardrail-item {{
-      font-size: 8.2px;
+      font-size: 8.4px;
       color: #334155;
-      margin-bottom: 3px;
-      padding-left: 10px;
+      margin-bottom: 3.5px;
+      padding-left: 11px;
       position: relative;
       line-height: 1.25;
     }}
@@ -245,11 +253,118 @@ html_content = f"""<!DOCTYPE html>
       font-weight: 800;
       font-size: 8px;
     }}
+
+    /* Commercial Terms Section */
+    .terms-box {{
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #ffffff;
+      padding: 8px 10px;
+      margin-bottom: 7px;
+    }}
+    .terms-grid {{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }}
+    .term-col {{
+      font-size: 8.3px;
+      line-height: 1.25;
+    }}
+    .term-title {{
+      font-weight: 800;
+      color: #2563eb;
+      text-transform: uppercase;
+      font-size: 8.3px;
+      margin-bottom: 2px;
+    }}
+    .term-body {{
+      color: #475569;
+    }}
+
+    /* Formal Authorization & Acceptance Block */
+    .auth-block {{
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      background: #f8fafc;
+      padding: 9px 12px;
+      margin-bottom: 7px;
+    }}
+    .auth-title {{
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0f172a;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 3px;
+    }}
+    .auth-grid {{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }}
+    .auth-party {{
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 8.4px;
+    }}
+    .auth-party-title {{
+      font-weight: 700;
+      color: #334155;
+      text-transform: uppercase;
+      font-size: 8.2px;
+      margin-bottom: 1px;
+    }}
+    .auth-sign-line {{
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      margin-top: 5px;
+    }}
+    .auth-sign-field {{
+      flex: 1;
+      border-bottom: 1.2px solid #475569;
+      min-height: 35px;
+      display: flex;
+      align-items: flex-end;
+      font-family: "Brush Script MT", "Caveat", cursive, sans-serif;
+      font-size: 13.5px;
+      color: #1e3a8a;
+      padding-left: 4px;
+      padding-bottom: 2px;
+    }}
+    .auth-date-field {{
+      width: 75px;
+      border-bottom: 1.2px solid #475569;
+      min-height: 35px;
+      font-family: ui-monospace, monospace;
+      font-size: 8.8px;
+      color: #334155;
+      text-align: center;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 2px;
+    }}
+    .auth-label {{
+      font-size: 7.4px;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }}
+
+    /* Footer Container */
     .footer-container {{
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       background: #f8fafc;
-      padding: 5px 10px;
+      padding: 8px 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -259,13 +374,13 @@ html_content = f"""<!DOCTYPE html>
     .footer-founder {{
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       flex: 1;
       min-width: 0;
     }}
     .founder-avatar {{
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       object-fit: cover;
       border: 1.5px solid #2563eb;
@@ -275,11 +390,11 @@ html_content = f"""<!DOCTYPE html>
     .founder-info {{
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 1.5px;
       min-width: 0;
     }}
     .founder-name {{
-      font-size: 9px;
+      font-size: 9.2px;
       color: #0f172a;
       line-height: 1.2;
       white-space: nowrap;
@@ -289,7 +404,7 @@ html_content = f"""<!DOCTYPE html>
       font-weight: 800;
     }}
     .founder-company {{
-      font-size: 8.2px;
+      font-size: 8.4px;
       color: #334155;
       line-height: 1.2;
       white-space: nowrap;
@@ -308,7 +423,7 @@ html_content = f"""<!DOCTYPE html>
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 2px;
+      gap: 3px;
       flex-shrink: 0;
     }}
     .business-logo {{
@@ -317,11 +432,11 @@ html_content = f"""<!DOCTYPE html>
       object-fit: contain;
     }}
     .demo-badge {{
-      font-size: 7.5px;
+      font-size: 8px;
       color: #1d4ed8;
       background: #eff6ff;
       border: 1px solid #bfdbfe;
-      padding: 1px 4px;
+      padding: 1.5px 5px;
       border-radius: 3px;
       font-weight: 700;
       font-family: ui-monospace, monospace;
@@ -334,29 +449,29 @@ html_content = f"""<!DOCTYPE html>
   <!-- Executive Header -->
   <div class="header">
     <div class="header-left">
-      <div class="brand-title">BarakahSoft LLC • Production Architecture Scope</div>
+      <div class="brand-title">BarakahSoft LLC • Enterprise Systems Engineering • Document #BS-2026-PIPE-049</div>
       <h1>Pipedrive Enterprise Integration Engine</h1>
-      <p class="subtitle">Direct v1 Webhook Pipeline, Two-Way Sinch SMS Gateway & Power BI Star Schema Data Warehouse</p>
+      <p class="subtitle">Direct v1 Webhook Pipeline, Two-Way Sinch SMS Gateway, AI Lead Qualification & Power BI Star Schema</p>
     </div>
     <div class="meta-card">
       <div><strong>Client:</strong> Shaun M. • Perth, Western Australia</div>
       <div><strong>Timeline:</strong> 10–14 Business Days (Modular Cadence)</div>
-      <div><strong>Calibrated Rate:</strong> <strong>$40.00 / hr (Turnkey $2,280)</strong></div>
-      <div><strong>Live Architecture Demo:</strong> <span class="live-badge">Live & Audited</span></div>
+      <div><strong>Calibrated Rate:</strong> <strong>$40.00 / hr (Turnkey Package: $2,280.00)</strong></div>
+      <div><strong>Live Prototype:</strong> <span class="live-badge">Verified & Audited</span></div>
     </div>
   </div>
 
   <!-- Scope Table -->
   <div class="section-header">
     <h2 class="section-title">Milestone Scope & Delivery Schedule</h2>
-    <div class="section-meta">https://pipedrive-integrations-hub.vercel.app</div>
+    <div class="section-meta">Live Demo: https://pipedrive-integrations-hub.vercel.app</div>
   </div>
 
   <table>
     <thead>
       <tr>
-        <th style="width: 14%;">Phase</th>
-        <th style="width: 54%;">Engineering Deliverables & Architecture</th>
+        <th style="width: 13%;">Phase</th>
+        <th style="width: 55%;">Engineering Deliverables & Architecture</th>
         <th style="width: 10%; text-align: center;">Hours</th>
         <th style="width: 10%; text-align: right;">Rate</th>
         <th style="width: 12%; text-align: right;">Investment</th>
@@ -464,14 +579,72 @@ html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
+  <!-- Commercial Terms & Conditions -->
+  <div class="terms-box">
+    <div class="card-box-title" style="margin-bottom: 4px;">Commercial Terms & Production Engagement Conditions</div>
+    <div class="terms-grid">
+      <div class="term-col">
+        <div class="term-title">Escrow Milestones</div>
+        <div class="term-body">100% milestone-based on Upwork. Funds deposited in escrow per phase and released strictly upon verified staging sign-off.</div>
+      </div>
+      <div class="term-col">
+        <div class="term-title">Full IP Ownership</div>
+        <div class="term-body">Complete copyright, source code, Git repositories, architectural blueprints, and environment configurations transfer to Client.</div>
+      </div>
+      <div class="term-col">
+        <div class="term-title">14-Day Hypercare SLA</div>
+        <div class="term-body">Includes 14 days of complimentary post-deployment monitoring, carrier route audits, and priority bug resolution at zero cost.</div>
+      </div>
+      <div class="term-col">
+        <div class="term-title">Quote Validity</div>
+        <div class="term-body">Valid for 30 days through October 14, 2026. Turnkey fixed price of $2,280.00 covers all specified deliverables without hidden fees.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formal Acceptance Authorization -->
+  <div class="auth-block">
+    <div class="auth-title">
+      <span>Formal Authorization & Engagement Acceptance</span>
+      <span style="font-weight: 500; font-size: 7.6px; color: #475569;">Legally binding upon signature by authorized representatives</span>
+    </div>
+    <div class="auth-grid">
+      <div class="auth-party">
+        <div class="auth-party-title">Authorized Provider: BarakahSoft LLC (Wyoming, USA)</div>
+        <div>Signatory: <strong>Shakil Ahmed</strong> • Principal Systems Architect & Founder</div>
+        <div class="auth-sign-line">
+          <div class="auth-sign-field">Shakil Ahmed (Digital Seal Verified)</div>
+          <div class="auth-date-field">14 Sep 2026</div>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span class="auth-label">Authorized Signature</span>
+          <span class="auth-label" style="width: 75px; text-align: center;">Date</span>
+        </div>
+      </div>
+
+      <div class="auth-party">
+        <div class="auth-party-title">Authorized Client: Shaun M. (Perth, WA)</div>
+        <div>Signatory: <strong>Shaun M.</strong> • Client Representative</div>
+        <div class="auth-sign-line">
+          <div class="auth-sign-field" style="color: #64748b; font-family: inherit; font-size: 8.5px; font-style: italic;">[ Accepted via Upwork Contract Offer / Signature ]</div>
+          <div class="auth-date-field">___ / ___ / 2026</div>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span class="auth-label">Client Acceptance Signature</span>
+          <span class="auth-label" style="width: 75px; text-align: center;">Date</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Executive Signature Footer -->
   <div class="footer-container">
     <div class="footer-founder">
       <img src="data:image/jpeg;base64,{headshot_b64}" alt="Shakil Ahmed" class="founder-avatar" />
       <div class="founder-info">
-        <div class="founder-name"><strong>Shakil Ahmed</strong> (Founder, 12+ Years Full-Stack)</div>
-        <div class="founder-company"><strong>BarakahSoft LLC</strong> • Wyoming, USA</div>
-        <div class="founder-sub">Former Lead Engineer at Legiit ($1M ARR Command Center) • Verified Upwork Partner</div>
+        <div class="founder-name"><strong>Shakil Ahmed</strong> • Founder & Lead Systems Architect (12+ Yrs Exp)</div>
+        <div class="founder-company"><strong>BarakahSoft LLC</strong> • Enterprise Pipedrive Integrations Partner</div>
+        <div class="founder-sub">Former Lead Engineer at Legiit ($1M ARR Command Center) • Top Rated Upwork Expert</div>
       </div>
     </div>
     <div class="footer-brand">
