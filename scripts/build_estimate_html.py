@@ -1,6 +1,7 @@
 import os
 import base64
 import subprocess
+import re
 
 docs_dir = os.path.expanduser("~/Apps/claude-code/pipedrive-integrations-hub/docs")
 html_path = os.path.join(docs_dir, "estimate.html")
@@ -20,67 +21,70 @@ html_content = f"""<!DOCTYPE html>
   <style>
     @page {{
       size: letter portrait;
-      margin: 11mm 13mm 11mm 13mm;
+      margin: 7mm 9mm 7mm 9mm;
     }}
     * {{
       box-sizing: border-box;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }}
+    html, body {{
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #ffffff;
+    }}
     body {{
       font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #0f172a;
-      line-height: 1.44;
-      font-size: 11px;
-      margin: 0;
-      padding: 0;
-      background: #ffffff;
+      line-height: 1.32;
+      font-size: 9.5px;
     }}
     .header {{
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 18px;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 11px;
-      margin-bottom: 13px;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 7px;
+      margin-bottom: 7px;
     }}
     .header-left {{
       flex: 1;
       min-width: 0;
     }}
     .brand-title {{
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #2563eb;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }}
     h1 {{
-      font-size: 16px;
+      font-size: 14.5px;
       font-weight: 800;
       color: #0f172a;
-      margin: 0 0 3px 0;
+      margin: 0 0 2px 0;
       letter-spacing: -0.02em;
-      line-height: 1.25;
+      line-height: 1.2;
     }}
     .subtitle {{
-      font-size: 9.8px;
+      font-size: 8.8px;
       color: #475569;
       margin: 0;
-      line-height: 1.35;
+      line-height: 1.25;
     }}
     .meta-card {{
       flex-shrink: 0;
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      padding: 7px 11px;
-      font-size: 10px;
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-size: 8.5px;
       text-align: right;
-      line-height: 1.42;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      line-height: 1.35;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
     }}
     .meta-card strong {{
       color: #0f172a;
@@ -91,71 +95,71 @@ html_content = f"""<!DOCTYPE html>
       color: #059669;
       border: 1px solid #a7f3d0;
       font-weight: 700;
-      padding: 1.5px 7px;
+      padding: 1px 5px;
       border-radius: 9999px;
-      font-size: 9px;
+      font-size: 8px;
       text-transform: uppercase;
-      margin-left: 4px;
+      margin-left: 3px;
     }}
     .section-header {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 14px 0 8px 0;
+      margin: 6px 0 5px 0;
     }}
     .section-title {{
-      font-size: 11.5px;
+      font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: #1e293b;
-      border-left: 3.5px solid #2563eb;
-      padding-left: 8px;
+      border-left: 3px solid #2563eb;
+      padding-left: 6px;
       margin: 0;
     }}
     .section-meta {{
-      font-size: 10px;
+      font-size: 8.5px;
       color: #64748b;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     }}
     table {{
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 14px;
+      margin-bottom: 7px;
     }}
     th {{
       background: #f1f5f9;
       color: #334155;
       font-weight: 700;
       text-transform: uppercase;
-      font-size: 9.5px;
+      font-size: 8.5px;
       letter-spacing: 0.04em;
       border: 1px solid #cbd5e1;
-      padding: 7px 9px;
+      padding: 4px 6px;
       text-align: left;
     }}
     td {{
       border: 1px solid #e2e8f0;
-      padding: 7px 9px;
-      font-size: 10.5px;
+      padding: 4px 6px;
+      font-size: 9px;
       vertical-align: top;
     }}
     .phase-num {{
       font-weight: 800;
       color: #1e293b;
-      font-size: 10.5px;
+      font-size: 9px;
       white-space: nowrap;
     }}
     .phase-name {{
       font-weight: 700;
       color: #0f172a;
-      font-size: 11px;
+      font-size: 9.5px;
     }}
     .phase-desc {{
       color: #475569;
-      font-size: 10px;
-      margin-top: 2px;
-      line-height: 1.35;
+      font-size: 8.2px;
+      margin-top: 1px;
+      line-height: 1.25;
     }}
     .phase-0-row {{
       background: #f0fdf4;
@@ -172,42 +176,42 @@ html_content = f"""<!DOCTYPE html>
     }}
     .total-row td {{
       border: 1px solid #0f172a;
-      padding: 8px 9px;
-      font-size: 11.5px;
+      padding: 5px 6px;
+      font-size: 9.5px;
     }}
     .grid-2col {{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 7px;
+      margin-bottom: 7px;
     }}
     .card-box {{
       border: 1px solid #cbd5e1;
-      border-radius: 9px;
+      border-radius: 6px;
       background: #f8fafc;
-      padding: 10px 12px;
+      padding: 6px 8px;
     }}
     .card-box-title {{
-      font-size: 10.5px;
+      font-size: 9px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: #1e293b;
-      margin: 0 0 7px 0;
+      margin: 0 0 4px 0;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 4px;
+      padding-bottom: 3px;
     }}
     .milestone-item {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
       border-bottom: 1px dotted #cbd5e1;
-      padding: 4px 0;
-      font-size: 10px;
+      padding: 2.5px 0;
+      font-size: 8.3px;
     }}
     .milestone-item:last-child {{
       border-bottom: none;
@@ -223,12 +227,12 @@ html_content = f"""<!DOCTYPE html>
       white-space: nowrap;
     }}
     .guardrail-item {{
-      font-size: 10px;
+      font-size: 8.2px;
       color: #334155;
-      margin-bottom: 4px;
-      padding-left: 13px;
+      margin-bottom: 3px;
+      padding-left: 10px;
       position: relative;
-      line-height: 1.35;
+      line-height: 1.25;
     }}
     .guardrail-item:last-child {{
       margin-bottom: 0;
@@ -239,46 +243,45 @@ html_content = f"""<!DOCTYPE html>
       left: 0;
       color: #16a34a;
       font-weight: 800;
-      font-size: 9.5px;
+      font-size: 8px;
     }}
     .footer-container {{
-      margin-top: 14px;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 9px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
       background: #f8fafc;
-      padding: 8px 14px;
+      padding: 5px 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      gap: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
     }}
     .footer-founder {{
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 8px;
       flex: 1;
       min-width: 0;
     }}
     .founder-avatar {{
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #2563eb;
-      box-shadow: 0 2px 4px rgba(37,99,235,0.18);
+      border: 1.5px solid #2563eb;
+      box-shadow: 0 1px 3px rgba(37,99,235,0.15);
       flex-shrink: 0;
     }}
     .founder-info {{
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
       min-width: 0;
     }}
     .founder-name {{
-      font-size: 10px;
+      font-size: 9px;
       color: #0f172a;
-      line-height: 1.25;
+      line-height: 1.2;
       white-space: nowrap;
     }}
     .founder-name strong {{
@@ -286,9 +289,9 @@ html_content = f"""<!DOCTYPE html>
       font-weight: 800;
     }}
     .founder-company {{
-      font-size: 9px;
+      font-size: 8.2px;
       color: #334155;
-      line-height: 1.25;
+      line-height: 1.2;
       white-space: nowrap;
     }}
     .founder-company strong {{
@@ -296,30 +299,30 @@ html_content = f"""<!DOCTYPE html>
       font-weight: 700;
     }}
     .founder-sub {{
-      font-size: 8.5px;
+      font-size: 7.8px;
       color: #475569;
-      line-height: 1.25;
+      line-height: 1.2;
       white-space: nowrap;
     }}
     .footer-brand {{
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 3px;
+      gap: 2px;
       flex-shrink: 0;
     }}
     .business-logo {{
-      height: 24px;
+      height: 18px;
       width: auto;
       object-fit: contain;
     }}
     .demo-badge {{
-      font-size: 8.5px;
+      font-size: 7.5px;
       color: #1d4ed8;
       background: #eff6ff;
       border: 1px solid #bfdbfe;
-      padding: 1.5px 7px;
-      border-radius: 4px;
+      padding: 1px 4px;
+      border-radius: 3px;
       font-weight: 700;
       font-family: ui-monospace, monospace;
       text-decoration: none;
@@ -364,7 +367,7 @@ html_content = f"""<!DOCTYPE html>
         <td class="phase-num"><span class="phase-0-badge">Phase 0</span></td>
         <td>
           <div class="phase-name">Interactive Working Architecture Prototype & Webhook Cockpit</div>
-          <div class="phase-desc">Two-way Sinch SMS simulator, native Pipedrive v1 webhook inspector (&lt;150ms), deterministic identity matching graph, and relational Star Schema entity viewer. Delivered upfront in &lt;30m to eliminate all architectural risk.</div>
+          <div class="phase-desc">Two-way Sinch SMS simulator with AI qualification, native Pipedrive v1 webhook inspector (&lt;150ms), deterministic identity matching graph, and relational Star Schema entity viewer. Delivered upfront in &lt;30m to eliminate all architectural risk.</div>
         </td>
         <td style="text-align: center; font-weight: 700; white-space: nowrap;">0.5 hrs (&lt;30m)</td>
         <td style="text-align: right; color: #16a34a; font-weight: 700;">$0.00</td>
@@ -384,7 +387,7 @@ html_content = f"""<!DOCTYPE html>
         <td class="phase-num">Phase 2</td>
         <td>
           <div class="phase-name">AI Qualification State Machine, Handover & TNZ Opt-Out (Project 1)</div>
-          <div class="phase-desc">Multi-turn qualification state machine (Claude 3.5 Haiku / Sonnet fallback chain), intent classifier, live salesperson handover (auto-assigns high-priority call task to Shaun M.), and Spam Act 2003 / TNZ opt-out interception (`STOP`).</div>
+          <div class="phase-desc">Multi-turn qualification state machine (OpenAI GPT-4o / Claude fallback chain), intent classifier, live salesperson handover (auto-assigns high-priority call task to Shaun M.), and Spam Act 2003 / TNZ opt-out interception (`STOP`).</div>
         </td>
         <td style="text-align: center; font-weight: 600;">13 hrs</td>
         <td style="text-align: right;">$40.00</td>
@@ -485,11 +488,12 @@ with open(html_path, "w", encoding="utf-8") as f:
 
 print("Saved estimate.html to:", html_path)
 
-# Run headless Chrome to produce ESTIMATE.pdf
+# Run headless Chrome to produce clean 1-page ESTIMATE.pdf with NO header/footer artifacts
 chrome_cmd = [
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     "--headless",
     "--disable-gpu",
+    "--no-pdf-header-footer",
     f"--print-to-pdf={pdf_path}",
     html_path
 ]
@@ -500,3 +504,10 @@ if res.returncode == 0:
     print("File size:", os.path.getsize(pdf_path), "bytes")
 else:
     print("Chrome print-to-pdf error:", res.stderr)
+
+# Verify page count
+with open(pdf_path, "rb") as f:
+    pdf_bytes = f.read()
+
+pages = re.findall(rb"/Type\s*/Page[^s]", pdf_bytes)
+print(f"Verified PDF page count: {len(pages)} page(s)")
