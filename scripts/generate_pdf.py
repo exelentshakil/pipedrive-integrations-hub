@@ -131,13 +131,13 @@ def build_pdf():
 
     # Document Header
     elements.append(Paragraph("Pipedrive Integration Engine — Implementation & Architecture Estimate", title_style))
-    elements.append(Paragraph("<b>Client:</b> Shaun M., Perth, Western Australia &nbsp;|&nbsp; <b>Prepared By:</b> Shakil Ahmed, BarakahSoft LLC &nbsp;|&nbsp; <b>Date:</b> September 14, 2026<br/><b>Live Interactive Architecture Demo:</b> <font color='#635bff'><u>https://pipedrive-integrations-hub.vercel.app</u></font> &nbsp;|&nbsp; <b>Standard Rate:</b> $150 / hr", subtitle_style))
+    elements.append(Paragraph("<b>Client:</b> Shaun M., Perth, Western Australia &nbsp;|&nbsp; <b>Prepared By:</b> Shakil Ahmed, BarakahSoft LLC &nbsp;|&nbsp; <b>Date:</b> September 14, 2026<br/><b>Live Interactive Architecture Demo:</b> <font color='#635bff'><u>https://pipedrive-integrations-hub.vercel.app</u></font> &nbsp;|&nbsp; <b>Calibrated Rate:</b> $40 / hr", subtitle_style))
     elements.append(HRFlowable(width="100%", thickness=1, color=c_border, spaceBefore=0, spaceAfter=8))
 
     # Section 1: Executive Summary
     elements.append(Paragraph("1. Executive Summary & Delivery Scope", h1_style))
     elements.append(Paragraph("This architecture estimate covers complete production deployment across Shaun's 3 distinct integration projects without Zapier middleware:", body_style))
-    elements.append(Paragraph("• <b>Project 1: Pipedrive + AI SMS Agent (Sinch Gateway)</b> — Native v1 webhooks (<200ms dispatch), two-way Sinch SMS, LLM conversation state machine, automatic Pipedrive Person/Deal logging, salesperson handover to Shaun M., and strict Australian Spam Act 2003 / TNZ opt-out synchronization.", bullet_style))
+    elements.append(Paragraph("• <b>Project 1: Pipedrive + AI SMS Agent (Sinch Gateway)</b> — Native v1 webhooks (<150ms dispatch), two-way Sinch SMS, LLM conversation state machine, automatic Pipedrive Person/Deal logging, salesperson handover to Shaun M., and strict Australian Spam Act 2003 / TNZ opt-out synchronization.", bullet_style))
     elements.append(Paragraph("• <b>Project 2: Tracking Platform → Pipedrive + Lead Scoring</b> — First-party cookie ingestion, anonymous session to Person identity resolution, and real-time computation of <code>lead_score</code>, <code>intent_tier</code>, <code>first_touch_source</code>, and <code>last_touch_source</code> custom fields.", bullet_style))
     elements.append(Paragraph("• <b>Project 3: Pipedrive → Power BI Star Schema Data Warehouse</b> — Normalized relational dimensional modeling (Fact_Deals, Dim_Persons, Fact_Activities, Dim_PipelineStages), delta refresh engine handling API rate limits, and DirectQuery REST/OData feeds.", bullet_style))
 
@@ -163,45 +163,45 @@ def build_pdf():
         ],
         [
             Paragraph("<b>Phase 1</b>", table_cell_bold),
-            Paragraph("<b>Native Pipedrive Webhooks & Sinch 2-Way Gateway (Project 1)</b><br/>Zero-Zapier serverless webhook listener (<200ms, HMAC-SHA256), Sinch AU Custom Sender ID, E.164 normalization, Pipedrive Person/Deal bidirectional lookup, transcript logging to activities/notes.", table_cell_style),
-            Paragraph("19 hrs", table_cell_center),
-            Paragraph("$150/hr", table_cell_center),
-            Paragraph("$2,850", table_cell_center_bold)
+            Paragraph("<b>Native Pipedrive Webhooks & Sinch 2-Way Gateway (Project 1)</b><br/>Zero-Zapier serverless webhook listener (<150ms, HMAC-SHA256), Sinch AU Custom Sender ID, E.164 normalization, Pipedrive Person/Deal bidirectional lookup, transcript logging to activities/notes.", table_cell_style),
+            Paragraph("14 hrs", table_cell_center),
+            Paragraph("$40/hr", table_cell_center),
+            Paragraph("$560", table_cell_center_bold)
         ],
         [
             Paragraph("<b>Phase 2</b>", table_cell_bold),
             Paragraph("<b>AI Qualification State Machine, Handover & TNZ Opt-Out (Project 1)</b><br/>Multi-turn qualification state machine, buying intent classifier, live salesperson handover (auto-assigns high-priority call task to Shaun M.), Spam Act 2003 / TNZ opt-out interception (`STOP`), custom field suppression.", table_cell_style),
-            Paragraph("17 hrs", table_cell_center),
-            Paragraph("$150/hr", table_cell_center),
-            Paragraph("$2,550", table_cell_center_bold)
+            Paragraph("13 hrs", table_cell_center),
+            Paragraph("$40/hr", table_cell_center),
+            Paragraph("$520", table_cell_center_bold)
         ],
         [
             Paragraph("<b>Phase 3</b>", table_cell_bold),
             Paragraph("<b>Website Tracking, Identity Resolution & Lead Scoring (Project 2)</b><br/>First-party cookie & fingerprint ingestion, multi-touch UTM attribution, deterministic identity matching graph, real-time lead score calculator writing custom fields to Pipedrive.", table_cell_style),
-            Paragraph("15 hrs", table_cell_center),
-            Paragraph("$150/hr", table_cell_center),
-            Paragraph("$2,250", table_cell_center_bold)
+            Paragraph("11 hrs", table_cell_center),
+            Paragraph("$40/hr", table_cell_center),
+            Paragraph("$440", table_cell_center_bold)
         ],
         [
             Paragraph("<b>Phase 4</b>", table_cell_bold),
             Paragraph("<b>Power BI Star Schema Pipeline & Delta Sync (Project 3)</b><br/>Relational dimensional modeling (Fact_Deals, Dim_Persons, Fact_Activities, Dim_Stages), delta sync engine handling Pipedrive rate limits (40-80 req/s batch pagination), OData/REST data feed endpoints.", table_cell_style),
-            Paragraph("16 hrs", table_cell_center),
-            Paragraph("$150/hr", table_cell_center),
-            Paragraph("$2,400", table_cell_center_bold)
+            Paragraph("12 hrs", table_cell_center),
+            Paragraph("$40/hr", table_cell_center),
+            Paragraph("$480", table_cell_center_bold)
         ],
         [
             Paragraph("<b>Phase 5</b>", table_cell_bold),
             Paragraph("<b>Staging, Telco Load Testing & Production Go-Live</b><br/>End-to-end integration test with live Australian telco dispatches, duplicate message idempotency, out-of-order webhook recovery, runbook, and team handoff.", table_cell_style),
-            Paragraph("8 hrs", table_cell_center),
-            Paragraph("$150/hr", table_cell_center),
-            Paragraph("$1,200", table_cell_center_bold)
+            Paragraph("7 hrs", table_cell_center),
+            Paragraph("$40/hr", table_cell_center),
+            Paragraph("$280", table_cell_center_bold)
         ],
         [
             Paragraph("<b>TOTAL</b>", table_cell_bold),
             Paragraph("<b>Complete 3-Project Production Rollout</b>", table_cell_bold),
-            Paragraph("<b>75 hrs</b>", table_cell_center_bold),
-            Paragraph("<b>$150/hr</b>", table_cell_center_bold),
-            Paragraph("<b>$11,250</b>", table_cell_center_bold)
+            Paragraph("<b>57 hrs</b>", table_cell_center_bold),
+            Paragraph("<b>$40/hr</b>", table_cell_center_bold),
+            Paragraph("<b>$2,280</b>", table_cell_center_bold)
         ]
     ]
 
@@ -222,9 +222,9 @@ def build_pdf():
 
     elements.append(Spacer(1, 8))
 
-    # Section 3: Rate Comparison & Modular Options
-    elements.append(Paragraph("3. Value Proposition & Modular Scope Options", h1_style))
-    elements.append(Paragraph("• <b>Junior Freelancer Approach ($35/hr):</b> 200–300+ billed hours ($7,000–$10,500) relying on brittle Zapier/Make multi-step zaps. Results in ongoing $300–$800/mo task tier costs, 5–15 min webhook latency, carrier spam filtering risks, and unnormalized flat Power BI tables that time out during refresh.<br/>• <b>BarakahSoft Direct Engineering ($150/hr):</b> 75 scoped hours ($11,250 total). Zero Zapier fees, sub-150ms native webhooks, automated Spam Act/TNZ compliance, and pre-indexed Star Schema tables.<br/>• <b>Modular Breakdown:</b> If preferred, projects can be commissioned independently: <i>Project 1 (AI SMS + Sinch + Handover + TNZ):</i> $5,400 (36 hrs) &nbsp;|&nbsp; <i>Project 2 (Tracking + Identity Matching):</i> $2,250 (15 hrs) &nbsp;|&nbsp; <i>Project 3 (Power BI Star Schema):</i> $2,400 (16 hrs).", body_style))
+    # Section 3: Modular Options
+    elements.append(Paragraph("3. Modular Milestone Options", h1_style))
+    elements.append(Paragraph("• <b>Option A — Project 1 Only (AI SMS + Sinch + Handover + TNZ):</b> 27 hrs ($1,080)<br/>• <b>Option B — Project 2 Only (Web Tracking + Lead Scoring):</b> 11 hrs ($440)<br/>• <b>Option C — Project 3 Only (Power BI Star Schema Pipeline):</b> 12 hrs ($480)<br/>• <b>Option D — Complete Turnkey Package (All 3 Projects + Testing):</b> 57 hrs ($2,280 total at calibrated $40/hr).", body_style))
 
     # Section 4: Operating Costs & Delivery Schedule
     elements.append(Spacer(1, 6))

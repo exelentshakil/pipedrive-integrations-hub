@@ -1,3 +1,5 @@
+hi shaun,
+
 most teams try gluing pipedrive, sinch, and power bi together with zapier and end up with five minute sync lags, duplicate texts, and broken tables that time out on refresh.
 
 live: https://pipedrive-integrations-hub.vercel.app
@@ -8,6 +10,6 @@ built a working proof of concept for your three projects this morning. it demons
 
 the only gap in the live demo is the sinch carrier dispatches run in simulator mode rather than against your live australian sender id, which takes thirty minutes to wire once you hand over credentials.
 
-4 years leading engineering at Legiit, built real-time telephony and ai data pipelines across millions of events.
+12+ years full-stack, 4 years leading engineering at Legiit building their AI Command Center ($1M ARR, 1,500+ businesses) and mobile marketplace app (10k+ downloads).
 
-full phase breakdown and fixed milestone options are in the attached estimate pdf. can jump on a quick call today perth time if you want to walk through the architecture?
+full phase breakdown and modular milestone options are in the attached estimate pdf. can jump on a quick call today perth time if you want to walk through the architecture?
